@@ -2,7 +2,6 @@
 
 export(color_sequence_plot)
 export(lcs_plot)
-export(longest_common_subsequence)
 export(plot_bases_distribution)
 export(plot_interseq)
 export(plot_intraseq)

@@ -13,5 +13,5 @@ lcs_plot(df)
 Title
 }
 \examples{
-https://wafi-cnr.github.io/ddna/stable/generated/digitaldna.LongestCommonSubsequence.html#digitaldna.LongestCommonSubsequence.plot_LCS
+
 }
