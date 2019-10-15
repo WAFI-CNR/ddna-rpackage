@@ -1,0 +1,22 @@
+Package: ddna
+Type: Package
+Title: Digital DNA
+Version: 0.1.0
+Author: IIT-CNR WAFI group
+Maintainer: Stefano Cresci <s.cresci@iit.cnr.it>
+Description: This package provides a set of utilities and algorithms for online social bot detection based on the Social Fingerprinting
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    testthat,
+    TraMineR,
+    RColorBrewer,
+    reshape2,
+    ggplot2,
+    grid,
+    scales,
+    tools
+RoxygenNote: 6.1.1
+Depends: 
+    reticulate
