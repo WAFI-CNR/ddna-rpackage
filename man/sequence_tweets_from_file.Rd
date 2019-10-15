@@ -16,6 +16,5 @@ stt
 Title
 }
 \examples{
-qualche esempio
 
 }
