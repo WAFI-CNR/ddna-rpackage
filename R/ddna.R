@@ -54,7 +54,6 @@ longest_common_subsequence <- function(df, overwrite_flag = F, threshold='auto',
 #' @export
 #'
 #' @examples
-#' qualche esempio
 #'
 sequence_tweets_from_file <- function(input_file, alphabet="b3_type"){
   ddna <- reticulate::import("digitaldna")
