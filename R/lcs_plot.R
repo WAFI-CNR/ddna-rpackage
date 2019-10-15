@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' https://wafi-cnr.github.io/ddna/stable/generated/digitaldna.LongestCommonSubsequence.html#digitaldna.LongestCommonSubsequence.plot_LCS
+#'
 lcs_plot <- function(df){
   library(ggplot2)
   library(gridExtra)
