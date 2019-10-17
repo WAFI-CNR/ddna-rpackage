@@ -4,7 +4,7 @@
 \alias{plot_intraseq}
 \title{Title}
 \usage{
-plot_intraseq(df)
+plot_intraseq(df, dnacol = 2)
 }
 \arguments{
 \item{filename_path}{}

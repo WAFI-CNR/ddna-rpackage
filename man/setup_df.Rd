@@ -4,7 +4,7 @@
 \alias{setup_df}
 \title{Title}
 \usage{
-setup_df(df, bases)
+setup_df(df, bases, dnacol = 2)
 }
 \arguments{
 \item{df}{}

@@ -4,10 +4,10 @@
 \alias{plot_bases_distribution}
 \title{Title}
 \usage{
-plot_bases_distribution(df)
+plot_bases_distribution(df, dnacol = 2)
 }
 \arguments{
-\item{df}{}
+\item{dnacol}{}
 }
 \description{
 Title

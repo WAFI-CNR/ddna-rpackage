@@ -1,14 +1,16 @@
 library(ggplot2)
 
+
 #' Title
 #'
 #' @param df
+#' @param dnacol
 #'
 #' @return
 #' @export
 #'
 #' @examples
-plot_bases_distribution <- function(df){
+plot_bases_distribution <-  function(df, dnacol = 2){
   require(TraMineR)
   require(ggplot2)
   require(gtable)
@@ -16,8 +18,8 @@ plot_bases_distribution <- function(df){
   require(grid)
   require(tools)
   # calcolo la distribuzione di probabilità delle basi per ogni posizione nelle sequenze
-  seqwide <- setup_df(df)
-  seq <- seqdef(df, var = 2, format = "STS", stsep = "")
+  seqwide <- setup_df(df, dnacol = dnacol)
+  seq <- seqdef(df, var = dnacol, format = "STS", stsep = "")
 
   # estraggo informazioni sulle sequenze
   bases <- alphabet(seq)

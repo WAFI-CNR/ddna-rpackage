@@ -8,15 +8,15 @@
 #' @export
 #'
 #' @examples
-plot_intraseq <- function(df){
+plot_intraseq <-  function(df, dnacol = 2){
   require(TraMineR)
   require(ggplot2)
   require(gtable)
   require(scales)
   require(grid)
   require(tools)
-  seqwide <- setup_df(df)
-  seq <- seqdef(df, var = 2, format = "STS", stsep = "")
+  seqwide <- setup_df(df, dnacol=dnacol)
+  seq <- seqdef(df, var = dnacol, format = "STS", stsep = "")
   bases <- alphabet(seq)
   labels <- stlab(seq)
   ids <- rownames(seq)

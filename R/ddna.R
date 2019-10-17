@@ -74,14 +74,13 @@ sequence_tweets_from_file <- function(input_file, alphabet="b3_type"){
 #' @export
 #'
 #' @examples
-setup_df <- function(df, bases){
-  seq <- seqdef(df, var = 2, format = "STS", stsep = "")
+setup_df <- function(df, bases, dnacol = 2){
+  seq <- seqdef(df, var = dnacol, format = "STS", stsep = "")
 
   bases <- alphabet(seq)
   labels <- stlab(seq)
   ids <- rownames(seq)
   num_seq <- nrow(seq)
-  max_len <- length(seq[1,])
   brackets <- rep(")", length(bases))
   full_labels <- paste(bases, " (", labels, ")", sep = "")
 

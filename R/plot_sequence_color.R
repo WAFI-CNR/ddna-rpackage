@@ -7,9 +7,9 @@
 #' @export
 #'
 #' @examples
-plot_sequences_by_color <- function(df){
-  seqwide <- setup_df(df)
-  seq <- seqdef(df, var = 2, format = "STS", stsep = "")
+plot_sequences_by_color <-  function(df, dnacol = 2){
+  seqwide <- setup_df(df, dnacol = dnacol)
+  seq <- seqdef(df, var = dnacol, format = "STS", stsep = "")
 
   bases <- alphabet(seq)
   #labels <- stlab(seq)

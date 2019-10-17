@@ -4,7 +4,7 @@
 \alias{plot_interseq}
 \title{Title}
 \usage{
-plot_interseq(df)
+plot_interseq(df, dnacol = 2)
 }
 \arguments{
 \item{filename_path}{}

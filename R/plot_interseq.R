@@ -8,15 +8,16 @@
 #' @export
 #'
 #' @examples
-plot_interseq <- function(df){
+plot_interseq <- function(df, dnacol = 2){
   #library(TraMineR)
   #library(ggplot2)
   #library(gtable)
   #library(scales)
   #library(grid)
   #library(tools)
-  seqwide <- setup_df(df)
-  seq <- TraMineR::seqdef(df, var = 2, format = "STS", stsep = "")
+  seqwide <- setup_df(df, dnacol = dnacol)
+
+  seq <- TraMineR::seqdef(df, var = dnacol, format = "STS", stsep = "")
   bases <- alphabet(seq)
   labels <- stlab(seq)
   ids <- rownames(seq)
@@ -24,7 +25,7 @@ plot_interseq <- function(df){
   max_len <- length(seq[1,])
   brackets <- rep(")", length(bases))
   full_labels <- paste(bases, " (", labels, ")", sep = "")
-  seqwide <- setup_df(df)
+  # seqwide <- setup_df(df, dnacol=dnacol)
 
     # calcolo la distribuzione di probabilità delle basi per ogni sequenza
   intraseq_prob <- as.data.frame(t(apply(seqwide[,-1], 1, seqprob, bases)))

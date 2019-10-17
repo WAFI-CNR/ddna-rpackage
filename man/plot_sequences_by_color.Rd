@@ -4,7 +4,7 @@
 \alias{plot_sequences_by_color}
 \title{Title}
 \usage{
-plot_sequences_by_color(df)
+plot_sequences_by_color(df, dnacol = 2)
 }
 \arguments{
 \item{df}{}
