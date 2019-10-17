@@ -14,7 +14,7 @@ lcs_plot <- function(df){
   library(grid)
   library(scales)
 
-  longest_common_subsequence(df, threshold = 500)
+  longest_common_subsequence(df)
   # carico i dati
   filename <- paste0(getwd(), "/glcr_cache.mat", collapse = NULL)
   lcs1 <- read.csv(filename, header=T, sep=",")
@@ -30,8 +30,7 @@ lcs_plot <- function(df){
     scale_y_continuous(limits = c(0, LCS_max)) +
     theme_bw(base_family = "Helvetica") +
     theme(axis.text.x = element_text(size=14), axis.title.x = element_text(size=18, vjust=-0.75), axis.text.y = element_text(size=14), axis.title.y = element_text(size=18, vjust=0.30)) +
-    theme(plot.title = element_text(lineheight=.8, face="bold", size=18), legend.text = element_text(size=14), legend.title = element_text(size=18), legend.key.height=unit(2,"line"), legend.key.width=unit(2,"line"), legend.key.size = unit(1.5, "lines")) +
-    abline(v=threshold)
+    theme(plot.title = element_text(lineheight=.8, face="bold", size=18), legend.text = element_text(size=14), legend.title = element_text(size=18), legend.key.height=unit(2,"line"), legend.key.width=unit(2,"line"), legend.key.size = unit(1.5, "lines"))
 
   # preparo breaks e minor breaks per il plot log-log
   breaks <- 10^(-10:10)
