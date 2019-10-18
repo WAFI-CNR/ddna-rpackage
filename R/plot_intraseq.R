@@ -15,6 +15,7 @@ plot_intraseq <-  function(df, dnacol = 2){
   require(scales)
   require(grid)
   require(tools)
+
   seqwide <- setup_df(df, dnacol=dnacol)
   seq <- seqdef(df, var = dnacol, format = "STS", stsep = "")
   bases <- alphabet(seq)

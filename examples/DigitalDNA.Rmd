@@ -1,0 +1,92 @@
+---
+title: "DigitalDNA-Rpackage"
+author: "WAFI-CNR"
+date: "01/09/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = "hide", message=F)
+
+```
+
+## Installation
+
+```{r installation, echo=TRUE, warning=FALSE, error=FALSE, tidy=TRUE}
+install.packages("devtools", repos = "http://cran.us.r-project.org")
+library(devtools)
+devtools::install_github("WAFI-CNR/ddna-rpackage")
+library(ddna)
+```
+
+## How to use
+
+You can also embed plots, for example:
+
+```{r upload_json, warning=FALSE, tidy=TRUE, results="markup"}
+df <- sequence_tweets_from_file("timelines.json")
+str(df)
+
+```
+or you can upload a CSV with already encoded DNA
+
+```{r upload_csv, echo=TRUE, warning=FALSE, tidy=TRUE}
+df <- read.csv2("italian_retweets_users_sequences_new.csv", sep = ",")
+str(df)
+```
+# Plot Bases distribution
+
+```{r bases_distribution, echo=TRUE, warning=FALSE}
+
+plot_bases_distribution(df, dnacol = 3)
+
+```
+
+## Plot interseq entropy
+You can pass the column in which there is the DNA sequence (default=2)
+
+```{r interseq, echo=TRUE, warning=FALSE}
+plot_interseq(df, dnacol = 3)
+```
+
+## Intraseq Entropy plot
+```{r intraseq, echo=TRUE, warning=FALSE}
+plot_intraseq(df, dnacol = 3)
+```
+# lcs plot
+
+```{r lcs_plot, echo=TRUE, warning=FALSE}
+
+lcs_plot(df, threshold = "auto", window = 10)
+
+```
+
+# Detection bots
+
+```{r bot_dec, echo=TRUE, warning=FALSE}
+
+bots = predict_bots(df, threshold = "auto", window = 10)
+```
+
+```{r show_bots_results, echo=FALSE, warning=FALSE, results='markup'}
+
+print(table(bots))
+```
+
+
+## Plot Sequence Color
+
+```{r sequence_color_not_printed, echo=TRUE, warning=FALSE, eval=FALSE}
+
+plot_sequences_by_color(df, dnacol = 3)
+
+```
+
+
+```{r smalelr_color_plot, echo=FALSE, warning=FALSE}
+
+df <- read.csv2("100_sintetici_genbot.csv", sep = ",")
+plot_sequences_by_color(df, dnacol = 3)
+
+```
+
