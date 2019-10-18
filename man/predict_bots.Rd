@@ -4,7 +4,7 @@
 \alias{predict_bots}
 \title{Title}
 \usage{
-predict_bots(df, overwrite_flag = F, threshold = "auto", window = 10)
+predict_bots(df, overwrite_flag = T, threshold = "auto", window = 10)
 }
 \arguments{
 \item{window}{}

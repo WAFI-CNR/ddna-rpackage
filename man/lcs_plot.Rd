@@ -4,7 +4,7 @@
 \alias{lcs_plot}
 \title{Title}
 \usage{
-lcs_plot(df)
+lcs_plot(df, threshold = "auto", window = 10)
 }
 \arguments{
 \item{df}{}

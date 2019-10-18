@@ -39,11 +39,11 @@ str(df)
 You can pass the column in which there is the DNA sequence (default=2)
 
 ```{r, echo=TRUE}
-plot_interseq(df, 3)
+plot_interseq(df, dnacol = 3)
 ```
 
 ## Intraseq Entropy plot
 ```{r, echo=TRUE}
-plot_intraseq(df, 3)
+plot_intraseq(df, dnacol = 3)
 ```
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
