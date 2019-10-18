@@ -24,7 +24,7 @@ devtools::install_github("WAFI-CNR/ddna-rpackage")
 
 ## References
 
-- https://hilaryparker.com/2014/04/29/writ ing-an-r-package-from-scratch/
+- https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/
 - https://www.rstudio.com/resources/videos/you-can-make-a-package-in-20-minutes/
 - http://www.mjdenny.com/R_Package_Pictorial.html
 - https://support.rstudio.com/hc/en-us/articles/200486508-Building-Testing-and-Distributing-Packages
