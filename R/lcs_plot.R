@@ -14,41 +14,15 @@ lcs_plot <- function(df){
   library(grid)
   library(scales)
 
-  longest_common_subsequence(df)
+  y = longest_common_subsequence(df)
+
   # carico i dati
   filename <- paste0(getwd(), "/glcr_cache.mat", collapse = NULL)
-  filename <- "D:/Google Drive/Europee2019 CNR/SISP 2019/timeline utenti/leader following/matrici/1122076402432528384_glcr_cache.mat"
   lcs1 <- read.csv(filename, header=T, sep=",")
   colnames(lcs1) <- c("Accounts", "LCS", "x", "y")
   end1 <- lcs1$Accounts[length(lcs1$Accounts)]
   LCS_max <- max(lcs1$LCS)
 
-  decision_function <- function(lcs1, w_size = 10){
-    lunghezza <- length(lcs1$LCS)
-    w_size <- w_size
-    X_avg_diff = diff(running_mean(lcs1, w_size))
-    i = 0
-    max_index = lunghezza - w_size
-    for (j in 1:max_index){
-      print(j)
-      print(paste(X_avg_diff[j], mean(X_avg_diff[j:j+w_size])))
-      if(X_avg_diff[j] < mean(X_avg_diff[j:j+w_size])) break
-      i <- i+1
-    }
-    print(i)
-    t = which.max(X_avg_diff[i:length(X_avg_diff)])
-    print(t)
-    return(t + i)
-
-  }
-
-  running_mean <- function(x, winsize){
-    run_mean_vector <- numeric()
-    for(i in 1:length(x$LCS)){
-      run_mean_vector[i] <- round(mean(x$LCS[max(1, i):min(i + winsize, length(x$LCS))]),2)
-    }
-  return(run_mean_vector)
-  }
 
   # plot lineare
   lcs_plot1_lin <- ggplot(lcs1, aes(Accounts, LCS)) +
@@ -59,7 +33,7 @@ lcs_plot <- function(df){
     #theme_bw(base_family = "Helvetica") +
     theme(axis.text.x = element_text(size=14), axis.title.x = element_text(size=18, vjust=-0.75), axis.text.y = element_text(size=14), axis.title.y = element_text(size=18, vjust=0.30)) +
     theme(plot.title = element_text(lineheight=.8, face="bold", size=18), legend.text = element_text(size=14), legend.title = element_text(size=18), legend.key.height=unit(2,"line"), legend.key.width=unit(2,"line"), legend.key.size = unit(1.5, "lines")) +
-    geom_vline(xintercept = decision_function(lcs1), color="orangered", linetype="dashed", size = 1.5)
+    geom_vline(xintercept = y$cut_, color="darkorange", linetype="dashed", size = 1.2)
 
   # preparo breaks e minor breaks per il plot log-log
   breaks <- 10^(-10:10)
@@ -75,7 +49,7 @@ lcs_plot <- function(df){
     #xlab("") +
     #ylab("") +
     #theme_bw(base_family = "Helvetica") +
-    geom_vline(xintercept = decision_function(lcs1), color="orangered", linetype="dashed", size = 1.5) +
+    geom_vline(xintercept = y$cut_, color="darkorange", linetype="dashed", size = 1.2) +
     theme(axis.text.x = element_text(size=14), axis.title.x = element_text(size=18, vjust=-0.75), axis.text.y = element_text(size=14), axis.title.y = element_text(size=18, vjust=0.30)) +
     theme(plot.title = element_text(lineheight=.8, face="bold", size=18), legend.text = element_text(size=14), legend.title = element_text(size=18), legend.key.height=unit(2,"line"), legend.key.width=unit(2,"line"), legend.key.size = unit(1.5, "lines"))
     #theme(plot.margin = unit(c(0,0,0,0), "cm"))
@@ -108,3 +82,27 @@ lcs_plot <- function(df){
   return(list(lcs_plot1_lin, lcs_plot1_log))
 
 }
+
+decision_function <- function(lcs1, w_size = 10){
+  lunghezza <- length(lcs1$LCS)
+  w_size <- w_size
+  X_avg_diff = diff(running_mean(lcs1, w_size))
+  i = 0
+  max_index = lunghezza - w_size
+  for (j in 1:max_index){
+    print(paste(X_avg_diff[j], mean(X_avg_diff[j:j+w_size])))
+    if(X_avg_diff[j] < mean(X_avg_diff[j:j+w_size])) break
+    i <- i+1
+  }
+  t = which.max(X_avg_diff[i:length(X_avg_diff)])
+  return(t + i)
+}
+
+running_mean <- function(x, winsize){
+  run_mean_vector <- numeric()
+  for(i in 1:length(x$LCS)){
+    run_mean_vector[i] <- round(mean(x$LCS[max(1, i):min(i + winsize, length(x$LCS))]),2)
+  }
+  return(run_mean_vector)
+}
+

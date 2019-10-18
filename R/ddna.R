@@ -40,8 +40,9 @@ vectorize = function(seq) {
 
 longest_common_subsequence <- function(df, overwrite_flag = F, threshold='auto', window=10){
   filename1 <- paste0(getwd(), "/glcr_cache", collapse = NULL)
-  lcs <- ddna$LongestCommonSubsequence(out_path = filename1, overwrite=overwrite_flag, threshold=threshold, window=window)
-  return(lcs$fit(X=df))
+  lcs <- ddna$LongestCommonSubsequence(out_path = filename1, overwrite=overwrite_flag, threshold=threshold, window=as.integer(window))
+  lcs$fit_predict(X=df$dna)
+  return(lcs)
 
 }
 
