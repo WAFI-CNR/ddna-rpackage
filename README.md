@@ -7,19 +7,19 @@ The goal of the package `ddna` is to provide a set of utilities and algorithms f
 
 ## Installation
 
-You can install the released version of ddna from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of ddna with:
 
 ``` r
 install.packages("devtools")
-library("devtools")
 devtools::install_github("WAFI-CNR/ddna-rpackage")
 ```
 
 ## Requirements
 
-- Python 3.x
+- Python 3.7+
 
 ## Known issues
+
 
 
 ## References
