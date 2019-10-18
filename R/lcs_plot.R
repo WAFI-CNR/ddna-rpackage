@@ -8,13 +8,13 @@
 #'
 #' @examples
 #'
-lcs_plot <- function(df){
+lcs_plot <- function(df, threshold='auto', window=10){
   library(ggplot2)
   library(gridExtra)
   library(grid)
   library(scales)
 
-  y = longest_common_subsequence(df)
+  y = longest_common_subsequence(df, threshold, window)
 
   # carico i dati
   filename <- paste0(getwd(), "/glcr_cache.mat", collapse = NULL)

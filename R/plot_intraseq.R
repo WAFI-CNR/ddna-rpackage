@@ -24,7 +24,6 @@ plot_intraseq <-  function(df, dnacol = 2){
   max_len <- length(seq[1,])
   brackets <- rep(")", length(bases))
   full_labels <- paste(bases, " (", labels, ")", sep = "")
-  seqwide <- setup_df(df)
 
     # calcolo la distribuzione di probabilità delle basi per ogni sequenza
   intraseq_prob <- as.data.frame(t(apply(seqwide[,-1], 1, seqprob, bases)))
