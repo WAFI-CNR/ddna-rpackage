@@ -14,7 +14,8 @@ lcs_plot <- function(df){
   library(grid)
   library(scales)
 
-  longest_common_subsequence(df)
+  y = longest_common_subsequence(df)
+
   # carico i dati
   filename <- paste0(getwd(), "/glcr_cache.mat", collapse = NULL)
   lcs1 <- read.csv(filename, header=T, sep=",")
@@ -22,15 +23,17 @@ lcs_plot <- function(df){
   end1 <- lcs1$Accounts[length(lcs1$Accounts)]
   LCS_max <- max(lcs1$LCS)
 
+
   # plot lineare
   lcs_plot1_lin <- ggplot(lcs1, aes(Accounts, LCS)) +
     geom_line(color="dodgerblue4") +
     geom_point(color="dodgerblue3", shape=1, size=5, alpha=0.25) +
     scale_x_continuous(breaks = pretty_breaks(n = 5), limits = c(0, end1)) +
     scale_y_continuous(limits = c(0, LCS_max)) +
-    theme_bw(base_family = "Helvetica") +
+    #theme_bw(base_family = "Helvetica") +
     theme(axis.text.x = element_text(size=14), axis.title.x = element_text(size=18, vjust=-0.75), axis.text.y = element_text(size=14), axis.title.y = element_text(size=18, vjust=0.30)) +
-    theme(plot.title = element_text(lineheight=.8, face="bold", size=18), legend.text = element_text(size=14), legend.title = element_text(size=18), legend.key.height=unit(2,"line"), legend.key.width=unit(2,"line"), legend.key.size = unit(1.5, "lines"))
+    theme(plot.title = element_text(lineheight=.8, face="bold", size=18), legend.text = element_text(size=14), legend.title = element_text(size=18), legend.key.height=unit(2,"line"), legend.key.width=unit(2,"line"), legend.key.size = unit(1.5, "lines")) +
+    geom_vline(xintercept = y$cut_, color="darkorange", linetype="dashed", size = 1.2)
 
   # preparo breaks e minor breaks per il plot log-log
   breaks <- 10^(-10:10)
@@ -45,7 +48,8 @@ lcs_plot <- function(df){
     annotation_logticks(sides='trbl') +
     #xlab("") +
     #ylab("") +
-    theme_bw(base_family = "Helvetica") +
+    #theme_bw(base_family = "Helvetica") +
+    geom_vline(xintercept = y$cut_, color="darkorange", linetype="dashed", size = 1.2) +
     theme(axis.text.x = element_text(size=14), axis.title.x = element_text(size=18, vjust=-0.75), axis.text.y = element_text(size=14), axis.title.y = element_text(size=18, vjust=0.30)) +
     theme(plot.title = element_text(lineheight=.8, face="bold", size=18), legend.text = element_text(size=14), legend.title = element_text(size=18), legend.key.height=unit(2,"line"), legend.key.width=unit(2,"line"), legend.key.size = unit(1.5, "lines"))
     #theme(plot.margin = unit(c(0,0,0,0), "cm"))
@@ -78,3 +82,27 @@ lcs_plot <- function(df){
   return(list(lcs_plot1_lin, lcs_plot1_log))
 
 }
+
+decision_function <- function(lcs1, w_size = 10){
+  lunghezza <- length(lcs1$LCS)
+  w_size <- w_size
+  X_avg_diff = diff(running_mean(lcs1, w_size))
+  i = 0
+  max_index = lunghezza - w_size
+  for (j in 1:max_index){
+    print(paste(X_avg_diff[j], mean(X_avg_diff[j:j+w_size])))
+    if(X_avg_diff[j] < mean(X_avg_diff[j:j+w_size])) break
+    i <- i+1
+  }
+  t = which.max(X_avg_diff[i:length(X_avg_diff)])
+  return(t + i)
+}
+
+running_mean <- function(x, winsize){
+  run_mean_vector <- numeric()
+  for(i in 1:length(x$LCS)){
+    run_mean_vector[i] <- round(mean(x$LCS[max(1, i):min(i + winsize, length(x$LCS))]),2)
+  }
+  return(run_mean_vector)
+}
+
