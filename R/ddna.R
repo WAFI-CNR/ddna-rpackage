@@ -1,30 +1,31 @@
 # global reference to scipy (will be initialized in .onLoad)
 ddna <- NULL
 
-
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("This package needs Python3.x in order to work")
+  packageStartupMessage("This package needs Python3.x in order to work and digitaldna Python package")
   library(TraMineR)
   library(ggplot2)
   library(gtable)
   library(scales)
   library(grid)
   library(tools)
-  #python.path <- choose.files(caption = "Select Python 3.7 exe/bin")
-  os.info <- Sys.info()
 
-  if(os.info['sysname']=="Windows"){
-    python.path <- file.choose()
-    reticulate::use_python(python.path, required = T)
-  }
 }
 
 .onLoad <- function(libname, pkgname) {
-
   # use superassignment to update global reference to ddna
   ddna <<- reticulate::import("digitaldna", delay_load = TRUE)
 }
 
+#' Title
+#'
+#' @param method
+#' @param conda
+#'
+#' @return
+#' @export
+#'
+#' @examples
 install_ddna <- function(method = "auto", conda = "auto") {
   reticulate::py_install("digitaldna", method = method, conda = conda)
 }
@@ -40,11 +41,30 @@ vectorize = function(seq) {
 
 longest_common_subsequence <- function(df, overwrite_flag = F, threshold='auto', window=10){
   filename1 <- paste0(getwd(), "/glcr_cache", collapse = NULL)
+  print(overwrite_flag)
   lcs <- ddna$LongestCommonSubsequence(out_path = filename1, overwrite=overwrite_flag, threshold=threshold, window=as.integer(window))
   lcs$fit_predict(X=df$dna)
   return(lcs)
-
 }
+
+#' Title
+#'
+#' @param df
+#' @param overwrite_flag
+#' @param threshold
+#' @param window
+#'
+#' @return
+#' @export
+#'
+#' @examples
+predict_bots <- function(df, overwrite_flag = T, threshold='auto', window=10){
+  filename1 <- paste0(getwd(), "/glcr_cache", collapse = NULL)
+  lcs <- ddna$LongestCommonSubsequence(out_path = filename1, overwrite=overwrite_flag, threshold=threshold, window=as.integer(window))
+  return(lcs$fit_predict(X=df$dna))
+}
+
+
 
 #' Title
 #'
@@ -128,12 +148,7 @@ seqentropy = function(seqpdf) {
 }
 
 # Execution example
-
-#choose.files()
-#library(rstudioapi)
-#file_path <- selectFile(caption = "Select Python 3.7 exe", label = "Select", path = NULL,
-#                        filter = NULL, existing = TRUE)
-
+# for windows
 #use_python("C:/Program Files/Python37/python.exe", required = T)
 
 
