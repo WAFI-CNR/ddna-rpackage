@@ -21,21 +21,22 @@ library(ddna)
 
 ## How to use
 
-You can also embed plots, for example:
+The "sequence_tweets_from_file" function call the Python function "digitaldna.TwitterDDNASequencer" and codifies json timeline according to three type of alphabets. Default alphabet "b3_type" adopts: (A) for tweets; (C) for replies; and (T) for retweets. 
+More information on alphabets here: https://wafi-cnr.github.io/ddna/stable/generated/digitaldna.TwitterDDNASequencer.html
 
 ```{r upload_json, warning=FALSE, tidy=TRUE, results="markup"}
-df <- sequence_tweets_from_file("timelines.json")
+df <- sequence_tweets_from_file("timelines.json", alphabet="b3_type")
 str(df)
 
 ```
-or you can upload a CSV with already encoded DNA
+The package allows you to upload a CSV with already encoded DNA
 
 ```{r upload_csv, echo=TRUE, warning=FALSE, tidy=TRUE}
 df <- read.csv2("italian_retweets_users_sequences_new.csv", sep = ",")
 str(df)
 ```
 # Plot Bases distribution
-
+It is possible to observe the distribution of each base of the chosen alphabet. For each base it will be plotted a boxplot. The function accepts as a parameter the index of the dataframe column of the codified timeline (default 3). 
 ```{r bases_distribution, echo=TRUE, warning=FALSE}
 
 plot_bases_distribution(df, dnacol = 3)
@@ -43,25 +44,30 @@ plot_bases_distribution(df, dnacol = 3)
 ```
 
 ## Plot interseq entropy
-You can pass the column in which there is the DNA sequence (default=2)
+This function produces a composite plot. On the left a boxplot representing the distribution of the inter-sequence entropy (Shannon's Entropy of the letters in the same with same sequence index but in different sequences). On the right a scatterplot of the entropies ordered by sequence index. "You can pass"plot_interseq" accept the column index in which there is the DNA sequence as a parameter (default=2).
 
 ```{r interseq, echo=TRUE, warning=FALSE}
 plot_interseq(df, dnacol = 3)
 ```
 
 ## Intraseq Entropy plot
+This function produces a box plot with a single box representing the distribution of the intra-sequence entropies (the Shannon Entropy computed over a single digital dna sequence).
 ```{r intraseq, echo=TRUE, warning=FALSE}
 plot_intraseq(df, dnacol = 3)
 ```
 # lcs plot
-
+The lcs plot function compute the longest common sequences among DDNA strings. It accepts as parameters a threshold and a window.
+Threshold indicates possible bots accounts and it can be calculated on the lcs curve derived and smoothed by a running mean (threshold = "auto") or assigned as a integer (threshold = x).
+Window parameter set the running mean window (neighbourhood).
+The lcs lenght column must be labelled as "dna".
 ```{r lcs_plot, echo=TRUE, warning=FALSE}
 
 lcs_plot(df, threshold = "auto", window = 10)
 
 ```
 
-# Detection bots
+# Bots detection
+"predicts_bots" produces a single column dataframe (logical) which identifies possible bot accounts.
 
 ```{r bot_dec, echo=TRUE, warning=FALSE}
 
@@ -75,7 +81,7 @@ print(table(bots))
 
 
 ## Plot Sequence Color
-
+This function plots codified timelines colored according to the chosen alphabet. Timelines are plotted in deacresing order according to their length.
 ```{r sequence_color_not_printed, echo=TRUE, warning=FALSE, eval=FALSE}
 
 plot_sequences_by_color(df, dnacol = 3)

@@ -153,7 +153,7 @@ seqentropy = function(seqpdf) {
 
 # df <- sequence_tweets_from_file("tests/timelines.json")
 # or...
-# df1 <- read.csv2("tests/italian_retweets_users_sequences_new.csv", sep = ",")
+# df1 <- read.csv2("examples/italian_retweets_users_sequences_new.csv", sep = ",")
 # plot_interseq(df)
 # # plot_intraseq(df)
 # # plot_bases_distribution(df)
