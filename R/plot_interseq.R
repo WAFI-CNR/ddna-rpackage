@@ -71,11 +71,15 @@ plot_interseq <- function(df, dnacol = 2){
 
   # unisco i 2 plot
   interseq_linegrob <- ggplotGrob(interseq_lineplot)
-  combined_plot <- ggplotGrob(interseq_boxplot)
-  combined_plot <- gtable_add_cols(combined_plot, unit(4, "null"))
-  # per vedere la struttura della tabella: gtable_show_layout(combined_plot)
-  combined_plot <- gtable_add_grob(combined_plot, interseq_linegrob, t = 1, l = 6, b = 6, r = 6)
+  interseq_boxgrob <- ggplotGrob(interseq_boxplot)
+  #combined_plot <- ggplotGrob(interseq_boxplot)
 
+  #combined_plot <- gtable_add_cols(interseq_boxgrob, unit(4, "null"))
+  combined_plot <- cbind(interseq_boxgrob, interseq_linegrob)
+  # per vedere la struttura della tabella: gtable_show_layout(combined_plot)
+  #combined_plot <- gtable_add_grob(combined_plot, interseq_linegrob, t = 1, l = 6, b = 6, r = 6)
+  #combined_plot <- gtable_add_grob(combined_plot, interseq_boxgrob, t = 1, l = 4, b = 6, r = 4)
+  #combined_plot <- gtable_add_grob(combined_plot, interseq_linegrob, t = 1, l = 6, b = 6, r = 6)
   # li visualizzo
   # png(paste(dna_sequencer_Rconfig$plot_dir, "/", plotname_inter, sep = ""), width = 10, height = 8, units = "in", res = 300)
 
@@ -88,5 +92,5 @@ plot_interseq <- function(df, dnacol = 2){
 
   # because it says:
   # NULL
-  return(combined_plot)
+  return(grid.draw(combined_plot))
 }
