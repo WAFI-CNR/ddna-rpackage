@@ -2,7 +2,7 @@
 title: "DigitalDNA-Rpackage"
 author: "WAFI-CNR"
 date: "01/09/2019"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -51,12 +51,14 @@ This function produces a composite plot. On the left a boxplot representing the 
 plot_interseq(df, dnacol = 3)
 ```
 
-## Intraseq Entropy plot
+## Intrasequence Entropy plot
 This function produces a box plot with a single box representing the distribution of the intra-sequence entropies (the Shannon Entropy computed over a single digital dna sequence).
+
 ```{r intraseq, echo=TRUE, warning=FALSE}
 plot_intraseq(df, dnacol = 3)
 ```
-# lcs plot
+
+# LCS plot
 The lcs plot function compute the longest common sequences among DDNA strings. It accepts as parameters a threshold and a window.
 Threshold indicates possible bots accounts and it can be calculated on the lcs curve derived and smoothed by a running mean (threshold = "auto") or assigned as a integer (threshold = x).
 Window parameter set the running mean window (neighbourhood).
