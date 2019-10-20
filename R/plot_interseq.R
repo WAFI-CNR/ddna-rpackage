@@ -92,5 +92,5 @@ plot_interseq <- function(df, dnacol = 2){
 
   # because it says:
   # NULL
-  return(grid.draw(combined_plot))
+  return(combined_plot)
 }

@@ -5,6 +5,13 @@ This project has been possible thanks to [SAGE Ocean Concept Grants 2018](https:
 
 The goal of the package `ddna` is to provide a set of utilities and algorithms for online social bot detection based on the Social Fingerprinting
 
+
+
+## Requirements
+
+- Python 3.6+
+- [DigitalDNA](https://github.com/WAFI-CNR/ddna-toolbox) python library
+
 ## Installation
 
 You can install the released version of ddna with:
@@ -14,13 +21,36 @@ install.packages("devtools")
 devtools::install_github("WAFI-CNR/ddna-rpackage")
 ```
 
-## Requirements
+# Usage
 
-- Python 3.7+
+You can find usage examples in this [page](examples/DigitalDNA.md)
 
-## Known issues
+## Contributing
 
+Want to contribute? Do it with these easy steps:
 
+1. Fork it (<https://github.com/WAFI-CNR/ddna-rpackage/fork>)
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+## Contributors
+
+- [Angelo Spognardi](https://angelospognardi.site.uniroma1.it/) - contributor (for [glcr library](https://github.com/WAFI-CNR/glcr))
+- [WAFI-CNR group](https://github.com/WAFI-CNR) - creator and maintainer
+
+# Credits and Aknowledgement
+
+This library has been made possible thanks to the collaboration and contribution of:
+- SAGE Publishing
+- Angelo Spognardi
+- Maurizio Tesconi
+- Stefano Cresci
+- ... and all the contributors of this opensource library
+
+## Want to contribute?
+Pull requests welcome
 
 ## References
 
