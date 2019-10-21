@@ -35,20 +35,15 @@ Want to contribute? Do it with these easy steps:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-## Contributors
-
-- [Angelo Spognardi](https://angelospognardi.site.uniroma1.it/) - contributor (for [glcr library](https://github.com/WAFI-CNR/glcr))
-- [WAFI-CNR group](https://github.com/WAFI-CNR) - creator and maintainer
-
-# Credits and Aknowledgement
+## Credits and Aknowledgement
 
 This library has been made possible thanks to the collaboration and contribution of:
-- SAGE Publishing
-- Bellomo Salvatore
-- Cresci Stefano
-- Martella Antonio
-- Spognardi Angelo 
-- Tesconi Maurizio
+- [SAGE Publishing](https://uk.sagepub.com/en-gb/eur/home)
+- [Bellomo Salvatore](https://www.iit.cnr.it/en/salvatore.bellomo)
+- [Cresci Stefano](https://www.iit.cnr.it/en/stefano.cresci)
+- [Martella Antonio](https://www.iit.cnr.it/en/antonio.martella)
+- [Spognardi Angelo](https://angelospognardi.site.uniroma1.it)
+- [Tesconi Maurizio](https://www.iit.cnr.it/en/maurizio.tesconi)
 - ... and all the contributors of this opensource library
 
 ## Want to contribute?
