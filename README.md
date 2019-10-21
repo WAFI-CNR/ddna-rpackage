@@ -44,11 +44,11 @@ Want to contribute? Do it with these easy steps:
 
 This library has been made possible thanks to the collaboration and contribution of:
 - SAGE Publishing
-- Antonio Martella
-- Salvatore Bellomo
-- Angelo Spognardi
-- Maurizio Tesconi
-- Stefano Cresci
+- Bellomo Salvatore
+- Cresci Stefano
+- Martella Antonio
+- Spognardi Angelo 
+- Tesconi Maurizio
 - ... and all the contributors of this opensource library
 
 ## Want to contribute?
