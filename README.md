@@ -44,6 +44,8 @@ Want to contribute? Do it with these easy steps:
 
 This library has been made possible thanks to the collaboration and contribution of:
 - SAGE Publishing
+- Antonio Martella
+- Salvatore Bellomo
 - Angelo Spognardi
 - Maurizio Tesconi
 - Stefano Cresci
